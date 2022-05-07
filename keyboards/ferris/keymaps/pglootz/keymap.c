@@ -153,6 +153,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define ALFRED A(KC_SPACE) // Open Alfred command prompt: Option + Space
 #define DRAFTS_QC C(S(G(A(KC_K)))) // Drafts app quick capture: Control + Command + Shift + 2 
 #define DRAFTS C(S(G(A(KC_Y)))) // Drafts main window: Control + Command + Shift + 1
+#define DRDN C(S(G(A(KC_I)))) // Use Dr Drafts workflow to add new draft: Control + Cmd + Shift + I
 
 // Layer tap keys
 #define TAB_NAV LT(NAV, KC_TAB)
@@ -215,7 +216,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 															   _______ , _______ ,
 
 							_______ , KEYSW   , EMJ_1   , EMJ_2   , _______ ,
-							_______ , _______ , DRAFTS_QC , _______ , DRAFTS ,
+							_______ , _______ , DRAFTS_QC , DRDN , DRAFTS ,
 							_______ , ALFRED , _______ , _______ , _______ ,
 		_______ , _______ 
 	),
