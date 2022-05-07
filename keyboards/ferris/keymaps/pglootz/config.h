@@ -1,47 +1,39 @@
-/*
-Copyright 2020 Pierre Chevalier <pierrechevalier83@gmail.com>
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+// Copyright 2021-2022 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 #pragma once
-// Set the mouse settings to a comfortable speed/accuracy trade-off,
-// assuming a screen refresh rate of 60 Htz or higher
-// The default is 50. This makes the mouse ~3 times faster and more accurate
-#define MOUSEKEY_INTERVAL 16
-// The default is 20. Since we made the mouse about 3 times faster with the previous setting,
-// give it more time to accelerate to max speed to retain precise control over short distances.
-#define MOUSEKEY_TIME_TO_MAX 40
-// The default is 300. Let's try and make this as low as possible while keeping the cursor responsive
-#define MOUSEKEY_DELAY 100
-// It makes sense to use the same delay for the mouseweel
-#define MOUSEKEY_WHEEL_DELAY 100
-// The default is 100
-#define MOUSEKEY_WHEEL_INTERVAL 50
-// The default is 40
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
-// Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 200
-#define PERMISSIVE_HOLD
+#define USE_SERIAL
+#define SPLIT_USB_DETECT
+#define MASTER_RIGHT
+
+#define BILATERAL_COMBINATIONS
+
+#define TAPPING_TERM 150 
 #define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD
+#define PERMISSIVE_HOLD
+#define TAPPING_FORCE_HOLD_PER_KEY
 
-// Underglow configuration
-#ifdef RGBLIGHT_ENABLE
-  #define RGBLIGHT_ANIMATIONS
-  #define RGBLIGHT_HUE_STEP 8
-  #define RGBLIGHT_SAT_STEP 8
-  #define RGBLIGHT_VAL_STEP 8
-#endif
+#define ONESHOT_TAP_TOGGLE 2
+
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+
+// Use Left Ctrl + Right Ctrl to activate the Command feature.
+#define IS_COMMAND() (get_mods() == MOD_MASK_CTRL)
+
+// When idle, turn off Caps Word after 5 seconds.
+#define CAPSWORD_USE_SHIFT
+
+#define COMBO_COUNT 4
