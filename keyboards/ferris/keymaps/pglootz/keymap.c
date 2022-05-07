@@ -3,6 +3,8 @@
 
 #include "features/casemodes.h"
 
+bool emoji_layer_on = false;
+
 enum layers {
 	BASE,
 	NAV,
@@ -62,6 +64,7 @@ enum unicode_names {
 	CHART_DOWN,
 	CHECK_MARK,
 	FOLDED_HANDS,
+	WAVE,
 };
 
 const uint32_t PROGMEM unicode_map[] = {
@@ -90,6 +93,7 @@ const uint32_t PROGMEM unicode_map[] = {
 	[CHART_UP] = 0x1F4C8, // 📈
 	[CHART_DOWN] = 0x1F4C9, // 📉
 	[FOLDED_HANDS] = 0x1F64F, // 🙏
+	[WAVE] = 0x1F44B, // 👋
 	// Emoji 2 Layer
 	[RAISE_HANDS] = 0x1F64C, // 🙌
 	[HUNDRED] = 0x1F4AF, // 💯
@@ -139,14 +143,21 @@ const uint32_t PROGMEM unicode_map[] = {
 
 // More custom keys
 #define EURO LALT(LSFT(KC_2))
+#define POUND A(KC_3)
 #define SCREEN1 C(G(S(KC_4)))
 #define SCREEN2 C(G(S(KC_3)))
 #define SCREEN3 C(S(KC_4))
 
+// Custom key combos (changed from default in OS/app)
+#define KEYSW C(S(G(KC_SPACE))) // Next keyboard input source: Command + Shift + Control + Space
+#define ALFRED A(KC_SPACE) // Open Alfred command prompt: Option + Space
+#define DRAFTS_QC C(S(G(A(KC_K)))) // Drafts app quick capture: Control + Command + Shift + 2 
+#define DRAFTS C(S(G(A(KC_Y)))) // Drafts main window: Control + Command + Shift + 1
+
 // Layer tap keys
 #define TAB_NAV LT(NAV, KC_TAB)
-#define ENT_FUN LT(FUN, KC_ENTER)
-#define NUM_SPC LT(NUM, KC_SPACE)
+#define NUM_ENT LT(NUM, KC_ENTER)
+#define FUN_SPC LT(FUN, KC_SPACE)
 #define EMJ_1 OSL(EMOJI_1)
 #define EMJ_2 OSL(EMOJI_2)
 
@@ -160,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	                       KC_UNDS  , KC_DOT , KC_SLASH , KC_DQT , KC_QUOTE ,
 						   KC_COMMA , HOME_A , HOME_E   , HOME_I , HOME_H   ,
 						   KC_MINUS , KC_U   , KC_O     , KC_Y   , KC_K     ,
-		ENT_FUN , NUM_SPC 
+		NUM_ENT , FUN_SPC 
 	),
 
 	[NAV] = LAYOUT_LR(
@@ -187,26 +198,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
 	[NUM] = LAYOUT_LR(
-		_______ , _______ , _______ , EURO      , _______ ,
-		KC_LCTL , KC_LGUI , KC_LALT  , KC_LSFT   , _______ ,
-		_______ , _______ , _______ , A(KC_C)   , _______ ,
-															   _______ , _______ ,
-							
-							KC_EQL   , KC_P7      , KC_P8      , KC_P9       , KC_P0     ,
-							KC_COMMA , KC_P4      , KC_P5      , KC_P6       , KC_P0     ,
-							KC_DOT   , KC_P1      , KC_P2      , KC_P3       , KC_P0     ,
+		_______ , _______ , _______  , EURO   , _______ ,
+		KC_LCTL , KC_LGUI , KC_LALT  , POUND  , _______ ,
+		_______ , _______ , _______  , KC_DLR , _______ ,
+												         _______ , _______ ,
+							KC_EQL   , KC_P7  , KC_P8   , KC_P9  , KC_P0   ,
+							KC_COMMA , KC_P4  , KC_P5   , KC_P6  , KC_P0   ,
+							KC_DOT   , KC_P1  , KC_P2   , KC_P3  , KC_P0   ,
 		_______ , _______ 
 	),
 
 	[FUN] = LAYOUT_LR(
-		_______ , _______ , _______ , _______ , _______ ,
-		KC_LCTL , KC_LGUI , KC_RALT , KC_LSFT   , _______ ,
-		_______ , _______ , _______ , _______ , _______ ,
+		_______ , KC_F7     , KC_F8     , KC_F9      , KC_F12 ,
+		_______ , KC_F4     , KC_F5     , KC_F6      , KC_F11 ,
+		_______ , KC_F1     , KC_F2     , KC_F3      , KC_F10 ,
 															   _______ , _______ ,
 
-							_______ , KC_F7     , KC_F8     , KC_F9      , KC_F12   ,
-							EMJ_2   , KC_F4     , KC_F5     , KC_F6      , KC_F11   ,
-							EMJ_1   , KC_F1     , KC_F2     , KC_F3      , KC_F10   ,
+							_______ , KEYSW   , EMJ_1   , EMJ_2   , _______ ,
+							_______ , _______ , DRAFTS_QC , _______ , DRAFTS ,
+							_______ , ALFRED , _______ , _______ , _______ ,
 		_______ , _______ 
 	),
 
@@ -215,14 +225,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		X(NOTE)     , X(THOUGHT)  , X(ARTICLE) , X(PEOPLE)    , X(PAPER)     ,
 		X(MOC)      , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
 													       _______ , _______ ,
-							_______ , X(GEAR)     ,  X(CHECK_MARK) , X(CHART_UP)    , X(CHART_DOWN) ,
-							_______ , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
-							_______ , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
+							X(GEAR)       , _______     , _______        , _______        , X(CHECK_MARK) ,
+							X(CHART_UP)   , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
+							X(CHART_DOWN) , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
 		_______ , _______
 	),
 
 	[EMOJI_2] = LAYOUT_LR(
-		X(ROFL)      , X(CRYING)      , X(HEART)     , X(KISS)      , X(HEART_FACE)   , 
+		X(ROFL)      , X(CRYING)      , X(WAVE)     , X(KISS)      , X(HEART_FACE)   , 
 		X(THUMBS_UP) , X(THUMBS_DOWN) , X(JOY_TEARS) , X(STAR_EYES) , X(WINK)         ,
 		X(HUNDRED)   , X(RAISE_HANDS) , X(TADA)      , X(FIRE)      , X(FOLDED_HANDS) ,
 													       _______ , _______ ,
@@ -288,3 +298,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			return true;
 	}	
 };
+
+void oneshot_layer_changed_user(uint8_t layer) {
+  if (layer == 5 || layer == 6) 
+  {
+	  emoji_layer_on = true;
+	  tap_code16(KEYSW);
+  }
+  
+  if (!layer) 
+  {
+	 if (emoji_layer_on) 
+	 {
+		tap_code16(KEYSW);
+		emoji_layer_on = false;
+	 }
+  }
+}
