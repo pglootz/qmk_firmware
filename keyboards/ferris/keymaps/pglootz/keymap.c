@@ -34,6 +34,8 @@ enum unicode_names {
 	PAPER,
 	PODCAST,
 	PEOPLE,
+	SCHOOL,
+	FILM,
 	SQR_RED,
 	SQR_ORANGE,
 	SQR_YELLOW,
@@ -82,6 +84,8 @@ const uint32_t PROGMEM unicode_map[] = {
 	[MOC] = 0x1F5FA, // 🗺️
 	[NOTE] = 0x1F4DD, // 📝️
 	[PEOPLE] = 0x1F464, // 👤️
+	[FILM] = 0x1F3AC, // 🎬
+	[SCHOOL] = 0x1F393, // 🎓
 	[SQR_RED] = 0x1F7E5, // 🟥️ 
 	[SQR_ORANGE] = 0x1F7E7, // 🟧️️
 	[SQR_YELLOW] = 0x1F7E8, // 🟨️
@@ -90,8 +94,6 @@ const uint32_t PROGMEM unicode_map[] = {
 	[GEAR] = 0x2699, // ⚙️
 	[BOOK] = 0x1F4D6, // 📖
 	[SPARKLES] = 0x2728, // ✨
-	[CHART_UP] = 0x1F4C8, // 📈
-	[CHART_DOWN] = 0x1F4C9, // 📉
 	[FOLDED_HANDS] = 0x1F64F, // 🙏
 	[WAVE] = 0x1F44B, // 👋
 	// Emoji 2 Layer
@@ -114,6 +116,8 @@ const uint32_t PROGMEM unicode_map[] = {
 	[WINK] = 0x1F609, // 😉
 	[HEART_FACE] = 0x1F970, // 🥰 
 	[CHECK_MARK] = 0x2705, // ✅ 
+	[CHART_UP] = 0x1F4C8, // 📈
+	[CHART_DOWN] = 0x1F4C9, // 📉
 };
 
 // Home row mods
@@ -154,6 +158,8 @@ const uint32_t PROGMEM unicode_map[] = {
 #define DRAFTS_QC C(S(G(A(KC_K)))) // Drafts app quick capture: Control + Command + Shift + 2 
 #define DRAFTS C(S(G(A(KC_Y)))) // Drafts main window: Control + Command + Shift + 1
 #define DRDN C(S(G(A(KC_I)))) // Use Dr Drafts workflow to add new draft: Control + Cmd + Shift + I
+#define APND_DLY_H C(S(G(A(KC_U)))) // Use Obsidian workflow to append to the daily note: Ctrl + Cmd + Shift + U
+#define APND_DLY C(S(G(A(KC_O)))) // Use Obsidian workflow to append to the daily note (without timestamp): Ctrl+Cmd+Shift+O
 
 // Layer tap keys
 #define TAB_NAV LT(NAV, KC_TAB)
@@ -216,30 +222,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 															   _______ , _______ ,
 
 							_______ , KEYSW   , EMJ_1   , EMJ_2   , _______ ,
-							_______ , _______ , DRAFTS_QC , DRDN , DRAFTS ,
-							_______ , ALFRED , _______ , _______ , _______ ,
+							_______ , DRAFTS_QC , APND_DLY_H , DRDN , DRAFTS ,
+							_______ , ALFRED , APND_DLY , _______ , _______ ,
 		_______ , _______ 
 	),
 
 	[EMOJI_1] = LAYOUT_LR(
-		X(INBOX)    , X(PODCAST) ,  X(PIN)     , X(BOOK)      , X(SPARKLES)  , 
-		X(NOTE)     , X(THOUGHT)  , X(ARTICLE) , X(PEOPLE)    , X(PAPER)     ,
-		X(MOC)      , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
+		X(SCHOOL)   , X(PODCAST) ,  X(PIN)     , X(BOOK)      , X(SPARKLES)  , 
+		X(FILM)     , X(THOUGHT)  , X(ARTICLE) , X(PEOPLE)    , X(PAPER)     ,
+		X(NOTE)     , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
 													       _______ , _______ ,
-							X(GEAR)       , _______     , _______        , _______        , X(CHECK_MARK) ,
-							X(CHART_UP)   , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
-							X(CHART_DOWN) , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
+							X(GEAR)  , _______     , _______        , _______        , X(CHECK_MARK) ,
+							X(MOC)   , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
+						    X(INBOX) , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
 		_______ , _______
 	),
 
 	[EMOJI_2] = LAYOUT_LR(
 		X(ROFL)      , X(CRYING)      , X(WAVE)     , X(KISS)      , X(HEART_FACE)   , 
-		X(THUMBS_UP) , X(THUMBS_DOWN) , X(JOY_TEARS) , X(STAR_EYES) , X(WINK)         ,
+		_______ , _______ , X(JOY_TEARS) , X(STAR_EYES) , X(WINK)         ,
 		X(HUNDRED)   , X(RAISE_HANDS) , X(TADA)      , X(FIRE)      , X(FOLDED_HANDS) ,
 													       _______ , _______ ,
 							_______  , _______ , _______ , _______ , _______ ,
-							_______  , _______ , _______ , _______ , _______ ,
-							_______ , _______ , _______ , _______ , _______ ,									
+							_______  , _______ , X(CHART_DOWN) , X(CHART_UP) , _______ ,
+							_______ , _______ , X(THUMBS_DOWN) , X(THUMBS_UP) , _______ ,									
 		_______ , _______
 	),
 };
