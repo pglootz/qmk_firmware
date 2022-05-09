@@ -160,6 +160,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #define DRDN C(S(G(A(KC_I)))) // Use Dr Drafts workflow to add new draft: Control + Cmd + Shift + I
 #define APND_DLY_H C(S(G(A(KC_U)))) // Use Obsidian workflow to append to the daily note: Ctrl + Cmd + Shift + U
 #define APND_DLY C(S(G(A(KC_O)))) // Use Obsidian workflow to append to the daily note (without timestamp): Ctrl+Cmd+Shift+O
+#define OBS_NEW C(S(G(A(KC_L)))) // Use Obsidian workflow to create a new note with or without title: Ctrl+Cmd+Shift+O 
 
 // Layer tap keys
 #define TAB_NAV LT(NAV, KC_TAB)
