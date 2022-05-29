@@ -199,8 +199,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______ , KC_LT   , KC_GT    , KC_PERC   , A(KC_S) ,
 		A(KC_E) , KC_GRV  , A(KC_U)  , A(KC_C)   , _______ , 
 							    							   _______   , _______ ,
-							KC_EQUAL , KC_DLR    , KC_LCBR   , KC_RCBR   , KC_EXLM ,
-							KC_GRV   , KC_BSLS   , KC_LPRN   , KC_RPRN   , KC_PIPE ,
+							KC_DLR   , KC_EQUAL    , KC_LCBR   , KC_RCBR   , KC_EXLM ,
+							KC_BSLS  , KC_GRV    , KC_LPRN   , KC_RPRN   , KC_PIPE ,
 							_______  , KC_TILD   , KC_LBRC   , KC_RBRC   , _______ ,									
 		_______ , _______
 	),
@@ -224,15 +224,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 							_______ , KEYSW   , EMJ_1   , EMJ_2   , _______ ,
 							_______ , DRAFTS_QC , APND_DLY_H , DRDN , DRAFTS ,
-							_______ , ALFRED , APND_DLY , _______ , _______ ,
+							_______ , ALFRED , APND_DLY , OBS_NEW , _______ ,
 		_______ , _______ 
 	),
 
 	[EMOJI_1] = LAYOUT_LR(
 		X(SCHOOL)   , X(PODCAST) ,  X(PIN)     , X(BOOK)      , X(SPARKLES)  , 
 		X(FILM)     , X(THOUGHT)  , X(ARTICLE) , X(PEOPLE)    , X(PAPER)     ,
-		X(NOTE)     , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
-													       _______ , _______ ,
+		X(TWEET)     , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
+													       X(NOTE) , _______ ,
 							X(GEAR)  , _______     , _______        , _______        , X(CHECK_MARK) ,
 							X(MOC)   , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
 						    X(INBOX) , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
