@@ -21,9 +21,9 @@ enum custom_keycodes {
 };
 
 enum unicode_names {
-    SEEDLING,
-    FERN,
-    INCUBATOR,
+    	SEEDLING,
+    	FERN,
+    	INCUBATOR,
 	EVERGREEN,
 	INBOX,
 	NOTE,
@@ -67,13 +67,14 @@ enum unicode_names {
 	CHECK_MARK,
 	FOLDED_HANDS,
 	WAVE,
+	BUILDING
 };
 
 const uint32_t PROGMEM unicode_map[] = {
 	// Emoji 1 Layer
-    [SEEDLING]  = 0x1F331,  // 🌱
-    [FERN] = 0x1F33F,  // 🌿
-    [INCUBATOR] = 0x1F31E, // 🌞️
+	[SEEDLING]  = 0x1F331,  // 🌱
+	[FERN] = 0x1F33F,  // 🌿
+	[INCUBATOR] = 0x1F31E, // 🌞️
 	[EVERGREEN] = 0x1F332, // 🌲
 	[INBOX] = 0x1F4E5, // 📥
 	[PAPER] = 0x1F4DC, // 📜️
@@ -96,6 +97,7 @@ const uint32_t PROGMEM unicode_map[] = {
 	[SPARKLES] = 0x2728, // ✨
 	[FOLDED_HANDS] = 0x1F64F, // 🙏
 	[WAVE] = 0x1F44B, // 👋
+	[BUILDING] = 0x1F3DB, // 🏛️ 
 	// Emoji 2 Layer
 	[RAISE_HANDS] = 0x1F64C, // 🙌
 	[HUNDRED] = 0x1F4AF, // 💯
@@ -199,9 +201,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______ , KC_LT   , KC_GT    , KC_PERC   , A(KC_S) ,
 		A(KC_E) , KC_GRV  , A(KC_U)  , A(KC_C)   , _______ , 
 							    							   _______   , _______ ,
-							KC_DLR   , KC_EQUAL    , KC_LCBR   , KC_RCBR   , KC_EXLM ,
+							KC_DLR   , KC_TILD   , KC_LCBR   , KC_RCBR   , KC_EXLM ,
 							KC_BSLS  , KC_GRV    , KC_LPRN   , KC_RPRN   , KC_PIPE ,
-							_______  , KC_TILD   , KC_LBRC   , KC_RBRC   , _______ ,									
+							_______  , KC_EQUAL  , KC_LBRC   , KC_RBRC   , _______ ,									
 		_______ , _______
 	),
 
@@ -233,7 +235,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		X(FILM)     , X(THOUGHT)  , X(ARTICLE) , X(PEOPLE)    , X(PAPER)     ,
 		X(TWEET)     , X(SEEDLING) , X(FERN)    , X(INCUBATOR) , X(EVERGREEN) ,
 													       X(NOTE) , _______ ,
-							X(GEAR)  , _______     , _______        , _______        , X(CHECK_MARK) ,
+							X(GEAR)  , _______     , _______        , _______        , X(BUILDING) ,
 							X(MOC)   , X(CRCL_RED) , X(CRCL_ORANGE) , X(CRCL_YELLOW) , X(CRCL_GREEN) ,
 						    X(INBOX) , X(SQR_RED)  , X(SQR_ORANGE)  , X(SQR_YELLOW)  , X(SQR_GREEN)  ,									
 		_______ , _______
@@ -245,7 +247,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		X(HUNDRED)   , X(RAISE_HANDS) , X(TADA)      , X(FIRE)      , X(FOLDED_HANDS) ,
 													       _______ , _______ ,
 							_______  , _______ , _______ , _______ , _______ ,
-							_______  , _______ , X(CHART_DOWN) , X(CHART_UP) , _______ ,
+							_______  , _______ , X(CHART_DOWN) , X(CHART_UP) , X(CHECK_MARK) ,
 							_______ , _______ , X(THUMBS_DOWN) , X(THUMBS_UP) , _______ ,									
 		_______ , _______
 	),
@@ -253,8 +255,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const key_override_t custom_shift_minus_to_plus = ko_make_basic(MOD_MASK_SHIFT, KC_MINUS, KC_PLUS);
 const key_override_t custom_shift_comma_to_colon = ko_make_basic(MOD_MASK_SHIFT, KC_COMMA, KC_COLON);
-const key_override_t custom_shift_under_to_semi = ko_make_basic(MOD_MASK_SHIFT, KC_UNDS, KC_SCLN);
-const key_override_t custom_shift_dot_to_amper = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_AMPERSAND);
+const key_override_t custom_shift_under_to_amper = ko_make_basic(MOD_MASK_SHIFT, KC_UNDS, KC_AMPERSAND);
+const key_override_t custom_shift_dot_to_semi = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_SCLN);
 const key_override_t custom_shift_fslash_to_star = ko_make_basic(MOD_MASK_SHIFT, KC_SLASH, KC_ASTR);
 const key_override_t custom_shift_dqt_to_question = ko_make_basic(MOD_MASK_SHIFT, KC_DQT, KC_QUESTION);
 const key_override_t custom_shift_squote_to_exclamation = ko_make_basic(MOD_MASK_SHIFT, KC_QUOTE, KC_EXCLAIM);
@@ -263,8 +265,8 @@ const key_override_t custom_shift_squote_to_exclamation = ko_make_basic(MOD_MASK
 const key_override_t **key_overrides = (const key_override_t *[]){
     &custom_shift_minus_to_plus,
     &custom_shift_comma_to_colon,
-    &custom_shift_under_to_semi,
-	&custom_shift_dot_to_amper,
+    &custom_shift_under_to_amper,
+	&custom_shift_dot_to_semi,
 	&custom_shift_fslash_to_star,
 	&custom_shift_dqt_to_question,
 	&custom_shift_squote_to_exclamation,
